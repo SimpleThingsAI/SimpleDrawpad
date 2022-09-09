@@ -148,7 +148,7 @@ buttonGroup.appendChild(thicknessInput);
 buttonGroup.appendChild(thicknessLabel);
 
 var text = document.createElement('p');
-text.innerHTML = 'This entire website has been entirely generated using OpenAI Programs: Codex and DALL-E2!';
+text.innerHTML = 'This entire website has been entirely generated using OpenAI Programs: Codex';
 document.body.appendChild(text);
 
 document.body.removeChild(text);
@@ -394,23 +394,6 @@ var layerLabel = document.createElement('label');
 layerLabel.innerHTML = 'Layers';
 document.body.appendChild(layerLabel);
 
-var upload = document.createElement('input');
-upload.type = 'file';
-upload.addEventListener('change', function(e) {
-  var file = upload.files[0];
-  var reader = new FileReader();
-  reader.addEventListener('load', function(e) {
-    var image = document.createElement('img');
-    image.src = reader.result;
-    image.addEventListener('load', function(e) {
-      var scale = Math.min(canvas.width / image.width, canvas.height / image.height);
-      context.drawImage(image, 0, 0, image.width * scale, image.height * scale);
-    });
-  });
-  reader.readAsDataURL(file);
-});
-document.body.appendChild(upload);
-
 document.body.removeChild(upload);
 document.body.insertBefore(upload, document.body.children[0]);
 
@@ -468,6 +451,20 @@ save.addEventListener('click', function(e) {
   document.body.appendChild(imageElement);
   localStorage.setItem('images', JSON.stringify(document.body.innerHTML));
 });
+
+var lime = document.createElement('button');
+lime.innerHTML = 'lime';
+lime.style.backgroundColor = 'lime';
+lime.addEventListener('click', function(e) {
+  context.strokeStyle = 'lime';
+});
+colorButtons.push(lime);
+colorGroup.appendChild(lime);
+
+colorGroup.removeChild(lime);
+colorGroup.insertBefore(lime, colorGroup.children[3]);
+
+context.lineWidth = 10;
 });
         </script>
     </head>
